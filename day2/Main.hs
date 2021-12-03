@@ -11,7 +11,7 @@ import Data.Maybe (mapMaybe)
 import Text.Read (readMaybe)
 
 main :: IO ()
-main = day2
+main = day2B
 
 -- naive approach
 day2 :: IO ()
@@ -46,3 +46,25 @@ instance Show Position where
 
 type Horizontal = Int
 type Depth = Int
+type Aim = Int
+
+data PositionB = PositionB Horizontal Depth Aim
+
+instance Show PositionB where
+  show (PositionB h d a) = show (h * d)
+
+day2B :: IO ()
+day2B = interact (show . pilotSubmarineB . mapMaybe readCommand . lines)
+
+pilotSubmarineB :: [Command] -> PositionB
+pilotSubmarineB = foldl runCommandB startingPositionB
+
+startingPositionB :: PositionB
+startingPositionB = PositionB 0 0 0
+
+runCommandB :: PositionB -> Command -> PositionB
+runCommandB (PositionB h d a) command =
+  case command of
+    Forward x -> PositionB (h + x) (d + (a * x)) a
+    Down y -> PositionB h d (a + y)
+    Up z -> PositionB h d (a - z)
