@@ -3,12 +3,7 @@
 ## Setup
 stack build
 
-## Day1
+## DayX
 ```
-cat day1/input.txt | $(stack exec which day1-exe)
-```
-
-## Day2
-```
-cat day2/input.txt | $(stack exec which day2-exe)
+cat dayX/input.txt | $(stack exec which dayX-exe)
 ```

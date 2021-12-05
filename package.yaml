@@ -34,3 +34,9 @@ executables:
     source-dirs:         day2
     dependencies:
     - aoc
+
+  day3-exe:
+    main:                Main.hs
+    source-dirs:         day3
+    dependencies:
+    - aoc
